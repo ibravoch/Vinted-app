@@ -14,7 +14,9 @@ app.use(usersRoutes);
 
 const offersRoutes = require("./routes/offers");
 app.use(offersRoutes);
-
+app.all("*", (req, res) => {
+  res.json({ message: "cette route n'existe pas" });
+});
 app.listen(process.env.PORT, () => {
   console.log("Server started");
 });
