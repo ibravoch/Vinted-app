@@ -36,12 +36,17 @@ router.post("/user/login", async (req, res) => {
   const hash = thisUser.hash;
   const newHash = SHA256(req.body.password + salt).toString(encBase64);
 
-  if (newHash === hash) {
-    res.status(200).json("tu es connecté");
-    console.log(hash);
-    console.log(newHash);
-  } else {
-    res.status(400).json(error);
+  try {
+    if (newHash === hash) {
+      res.status(200).json("tu es connecté");
+      console.log(hash);
+      console.log(newHash);
+    } else {
+      console.log("not good");
+      res.status(400).json("le mot de passe est pas good");
+    }
+  } catch (error) {
+    console.log(error.message);
   }
 });
 

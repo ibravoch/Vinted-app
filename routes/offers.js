@@ -54,4 +54,12 @@ router.get("/offer", async (req, res) => {
   res.json(allOffer);
 });
 
+router.get("/offer/:id", async (req, res) => {
+  const offerById = await Offer.findById(req.params.id).populate({
+    path: "owner",
+    select: "account.username account.phone account.avatar",
+  });
+  res.json(offerById);
+});
+
 module.exports = router;
