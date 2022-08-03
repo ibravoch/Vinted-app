@@ -38,7 +38,7 @@ router.post("/user/login", async (req, res) => {
 
   try {
     if (newHash === hash) {
-      res.status(200).json("tu es connecté");
+      res.status(200).json(thisUser);
       console.log(hash);
       console.log(newHash);
     } else {

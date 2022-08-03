@@ -5,9 +5,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/vinted-app");
+//mongoose.connect("mongodb://localhost:27017/vinted-app");
 
-//mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 
 const usersRoutes = require("./routes/users");
 app.use(usersRoutes);
@@ -19,6 +19,6 @@ app.all("*", (req, res) => {
   res.json({ message: "cette route n'existe pas" });
 });
 
-app.listen(3001, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started");
 });
